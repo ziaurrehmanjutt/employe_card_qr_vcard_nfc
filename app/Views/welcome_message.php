@@ -32,7 +32,7 @@
             <div id="main_div_card" style="width: 600px;height:600px;border:1px solid black;margin:10px auto;background:#f1f1f1;position: relative;">
 
 
-                <div class="draggable">
+                <div onclick="elmClick(this)" class="draggable">
                     <p>Drag me around</p>
                 </div>
 
@@ -110,7 +110,7 @@
             <table class="table">
                 <tr>
                     <td>
-                        <button class="btn btn-sm">
+                        <button onclick="addElm(1)" class="btn btn-sm">
                             Text
                         </button>
                     </td>
@@ -169,6 +169,8 @@
         }
     }
 
+
+    var allElements = [];
     var element = {
         elmType: 0,
         elmID: "",
@@ -201,6 +203,7 @@
             left: 10
         }
     }
+    var selectedElm = null;
 
     function changeMain(type) {
         let w = $('#main_div_card').width();
@@ -229,10 +232,20 @@
     }
 
     function addElm(type) {
-        let elm = ` <div class="draggable" style="height: 100px;width: 100px;border: 1px solid black;padding: 3px;text-align: center;position:absolute">
-                        <p>Drag me around</p>
-                    </div>`;
+        console.log(type);
+        let r = (Math.random() + 1).toString(36).substring(7);
+        let newElement = element;
+        newElement.elmID = r;
+        let elm;
+        if(type == 1){
+            newElement.elmType = 1;
+            elm = ` <div id="${r}" onclick="elmClick(this)" class="draggable" style="height: 100px;width: 100px;border: 1px solid black;padding: 3px;text-align: center;position:absolute">
+                            <span></span>
+                        </div>`;
+        }
+        console.log(elm);
         $('#main_div_card').append(elm);
+        allElements.push(newElement);
         reInitial();
     }
 
@@ -251,10 +264,14 @@
 
 
     function setBackground() {
-        console.log()
         $("#main_div_card").css({
             "backgroundColor": $("#main_background").val()
         });
+    }
+    function elmClick(ev) {
+        console.log(ev);
+        console.log($(ev).attr('id'));
+        selectedElm = ev;
     }
 </script>
 
