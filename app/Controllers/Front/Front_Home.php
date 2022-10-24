@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Controllers\Front;
-use App\Controllers\GlobalBase;
-class Front_Home extends GlobalBase
+use App\Controllers\Front\Front_Base;
+class Front_Home extends Front_Base
 {
     public function index()
     {
-        return view('front/pages/home');
+        return $this->loadViews('home');
     }
 } //app\Views\front\pages\home.php

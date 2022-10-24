@@ -37,6 +37,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('page', 'Home::index');
 $routes->get('/', 'Front\Front_Home::index');
+$routes->get('login', 'Front\Front_User::login');
+$routes->post('login', 'Front\Front_User::login');
 
 /*
  * --------------------------------------------------------------------
