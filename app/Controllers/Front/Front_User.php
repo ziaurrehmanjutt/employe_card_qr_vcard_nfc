@@ -20,7 +20,8 @@ class Front_User extends Front_Base
                         $e = "Your Account is Not Active";
                     }else{
                         $this->session->set('user_login',$verify);
-                        echo "login";die;
+                        return redirect()->to('home');
+                        // echo "login";die;
                     }
                 }else{
                     $e = "Invalid Password Used";

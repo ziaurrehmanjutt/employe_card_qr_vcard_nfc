@@ -40,6 +40,12 @@ $routes->get('/', 'Front\Front_Home::index');
 $routes->get('login', 'Front\Front_User::login');
 $routes->post('login', 'Front\Front_User::login');
 
+
+////Users Routes
+$routes->get('home', 'User\User_Home::home');
+$routes->get('contact/add', 'User\User_Contacts::add');
+$routes->get('contact/list', 'User\User_Contacts::list');
+$routes->get('user/settings', 'User\User_Home::setting');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
