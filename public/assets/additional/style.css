@@ -1,0 +1,26 @@
+.input-group-prepend.country-code{
+    width: 80px;
+}
+.country-code .select2{
+    width: 78px;
+}
+
+.country-code .select2-selection.select2-selection--single{
+    height: 37px;
+    width: 78px;
+}
+
+.country-code .select2-container{
+    width:80px !important;
+}
+.select2-selection__arrow{
+    top:6px !important;
+}
+.select2-selection.select2-selection--single{
+    height: 37px !important;
+}
+
+.country-code .select2-selection__rendered{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}

@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="<?=base_url('assets/backend/theme')?>/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url('assets/backend/theme')?>/dist/css/adminlte.min.css">
-</head>
+  <link rel="stylesheet" href="<?=base_url('assets/additional/style.css')."?".time()?>">
+</head> 
 <body class="hold-transition  layout-navbar-fixed sidebar-mini accent-success layout-fixed text-sm">
 <!-- Site wrapper -->
 <div class="wrapper">

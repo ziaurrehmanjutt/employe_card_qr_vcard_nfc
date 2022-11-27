@@ -6,6 +6,7 @@ class User_Contacts extends User_Base
 {
     public function add()
     {
-        return $this->loadViews('contacts/add');
+        $data['countries'] = $this->shared->all_countries();
+        return $this->loadViews('contacts/add',$data,"contacts/add_js");
     }
 } 

@@ -2,6 +2,7 @@
 
 namespace App\Controllers\User;
 use App\Controllers\User\User_Base;
+use App\Models\User\User_Settings_Model;
 class User_Home extends User_Base
 {
     public function home()
@@ -10,8 +11,9 @@ class User_Home extends User_Base
     }
     public function setting()
     {
-        $sm = new \App\Models\Front\Shared_Model();
-        $data['all_countries'] = $sm->all_countries();
+        $data['all_countries'] = $this->shared->all_countries();
+        $setting = new User_Settings_Model();
+        $data['profile'] = $setting->get_my_profile($this->session->get('user_login'));
         return $this->loadViews('home/settings/update',$data,'home/settings/update_js');
     }
 }
