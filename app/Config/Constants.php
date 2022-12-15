@@ -92,3 +92,8 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+
+///USER DEFINED
+defined('CARD_IMAGE_PATH')      || define('CARD_IMAGE_PATH', "/assets/upload/card_images");
+defined('BANNER_IMAGE_PATH')      || define('BANNER_IMAGE_PATH', "/assets/upload/banner_images");

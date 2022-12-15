@@ -9,4 +9,15 @@ class Base_Model extends Model
         parent::__construct();
         $this->db = \Config\Database::connect();
     }
+
+    function updateData($table,$data,$where){
+        $builder =  $this->db->table($table);
+        $builder->where($where);
+        $builder->update($data);
+    }
+
+    function insertData($table,$data){
+        $builder =  $this->db->table($table);
+        $builder->insert($data);
+    }
 }

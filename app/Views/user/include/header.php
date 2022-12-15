@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Blank Page</title>
+  <title>
+    <?=isset($title) && $title ? $title : "EasyCards" ?>
+  </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -11,6 +13,7 @@
   <link rel="stylesheet" href="<?=base_url('assets/backend/theme')?>/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url('assets/backend/theme')?>/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url('assets/backend/theme')?>/plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="<?=base_url('assets/additional/style.css')."?".time()?>">
 </head> 
 <body class="hold-transition  layout-navbar-fixed sidebar-mini accent-success layout-fixed text-sm">
@@ -68,11 +71,11 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a  href="<?=base_url("contact/list")?>" href="#" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Contact List</p>
             </a>
-          </li>
+          </li> 
 
           <li class="nav-item">
             <a href="<?=base_url("contact/add")?>" class="nav-link">

@@ -37,7 +37,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input value="<?=$profile['first_name']?>" required type="text" class="form-control" />
+                                <input value="<?= $profile['first_name'] ?>" name="first_name" required type="text" class="form-control" />
                             </div>
                         </div>
 
@@ -45,17 +45,17 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input value="<?=$profile['last_name']?>" required type="text" class="form-control" />
+                                <input value="<?= $profile['last_name'] ?>" name="last_name" required type="text" class="form-control" />
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Timezone</label>
-                                <select required class="form-control select2" style="width: 100%;">
+                                <select required name="user_time_zone" class="form-control select2" style="width: 100%;">
                                     <option value="">Select Time Zone</option>
                                     <?php foreach (DateTimeZone::listIdentifiers() as $value) {
-                                        print " <option value=\"$value\">$value</option>";
+                                        print "<option " . ($settings['user_time_zone'] == $value ? 'selected' : "") . " value=\"$value\">$value</option>";
                                     } ?>
                                 </select>
                             </div>
@@ -67,10 +67,10 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Country Code</label>
-                                <select required class="form-control select2" style="width: 100%;">
+                                <select required name="default_country_code" class="form-control select2" style="width: 100%;">
                                     <option value="">Mobile Country Code</option>
                                     <?php foreach ($all_countries as $value) {
-                                        print " <option value=\"{$value['phonecode']}\">{$value['nicename']} ({$value['phonecode']})</option>";
+                                        print "<option " . ($settings['default_country_code'] == $value['phonecode'] ? 'selected' : "") . " value=\"{$value['phonecode']}\">{$value['nicename']} ({$value['phonecode']})</option>";
                                     } ?>
                                 </select>
                             </div>
@@ -82,7 +82,7 @@
                 <div class="card-footer">
 
                     <div class="card-tools">
-                        <button type="submit" class="btn btn-secondary float-right">
+                        <button type="submit" name="update_basic" class="btn btn-secondary float-right">
                             Update
                         </button>
                     </div>
@@ -108,7 +108,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Company Name</label>
-                                <input required type="text" class="form-control" />
+                                <input name="company_name" value="<?= $settings['company_name'] ?>" required type="text" class="form-control" />
                             </div>
                         </div>
 
@@ -116,94 +116,90 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Job Title</label>
-                                <input required type="text" class="form-control" />
+                                <input name="job_title" value="<?= $settings['job_title'] ?>" required type="text" class="form-control" />
                             </div>
                         </div>
 
 
                         <div class="col-md-6" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Company Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Company Website</label>
-                            <input type="url" class="form-control">
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Mobile</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend country-code">
-                                    <select class="select2 ">
-                                        <?php foreach ($all_countries as $key => $value) { ?>
-                                            <option value="<?=$value['phonecode']?>">+<?=$value['phonecode']?></option>
-                                        <?php }  ?>
-                                       
-                                    </select>
-                                </div>
-                                <input type="text" class="form-control">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Company Email</label>
+                                <input name="company_email" value="<?= $settings['company_email'] ?>" type="email" class="form-control">
                             </div>
-
                         </div>
-                    </div>
 
-
-                    <div class="col-md-4" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Address (House)</label>
-                            <input type="text" class="form-control">
+                        <div class="col-md-6" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Company Website</label>
+                                <input name="company_website" value="<?= $settings['company_website'] ?>" type="url" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Street 1</label>
-                            <input type="text" class="form-control">
+
+
+                        <div class="col-md-6" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Mobile</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend country-code">
+                                        <select class="select2 ">
+                                            <?php foreach ($all_countries as $key => $value) { ?>
+                                                <?php $sel = $settings['default_country_code'] == $value['phonecode'] ? "selected" : ($settings['default_country_code'] == $value['phonecode'] ? 'selected' : "") ?>
+                                                <option <?= $sel ?> value="<?= $value['phonecode'] ?>">+<?= $value['phonecode'] ?></option>
+                                            <?php }  ?>
+                                        </select>
+                                    </div>
+                                    <input name="company_mobile" value="<?= $settings['company_mobile'] ?>" type="text" class="form-control">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Street 2</label>
-                            <input type="text" class="form-control">
+
+
+                        <div class="col-md-4" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Address (House)</label>
+                                <input name="company_address_name" value="<?= $settings['company_address_name'] ?>" type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>City</label>
-                            <input type="text" class="form-control">
+                        <div class="col-md-4" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Street 1</label>
+                                <input name="company_address_street" value="<?= $settings['company_address_street'] ?>" type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Zip</label>
-                            <input type="text" class="form-control">
+                        <div class="col-md-4" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Street 2</label>
+                                <input name="company_address_extended" value="<?= $settings['company_address_extended'] ?>" type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-3" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Stat</label>
-                            <input type="text" class="form-control">
+                        <div class="col-md-3" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>City</label>
+                                <input name="company_address_city" value="<?= $settings['company_address_city'] ?>" type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-3" data-select2-id="119">
-                        <div class="form-group" data-select2-id="118">
-                            <label>Country</label>
-                            <input type="text" class="form-control">
+                        <div class="col-md-3" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Zip</label>
+                                <input name="company_address_zip" value="<?= $settings['company_address_zip'] ?>" type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
 
+                        <div class="col-md-3" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Stat</label>
+                                <input name="company_address_stat" value="<?= $settings['company_address_stat'] ?>" type="text" class="form-control">
+                            </div>
+                        </div>
 
-
+                        <div class="col-md-3" data-select2-id="119">
+                            <div class="form-group" data-select2-id="118">
+                                <label>Country</label>
+                                <input name="company_address_country" value="<?= $settings['company_address_country'] ?>" type="text" class="form-control">
+                            </div>
+                        </div>
                     </div>
                     <!-- /.row -->
                 </div>
@@ -211,7 +207,7 @@
                 <div class="card-footer">
 
                     <div class="card-tools">
-                        <button type="submit" class="btn btn-secondary float-right">
+                        <button type="submit" name="setting_update" class="btn btn-secondary float-right">
                             Update
                         </button>
                     </div>

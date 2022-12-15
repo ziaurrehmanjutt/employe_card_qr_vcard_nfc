@@ -44,8 +44,12 @@ $routes->post('login', 'Front\Front_User::login');
 ////Users Routes
 $routes->get('home', 'User\User_Home::home');
 $routes->get('contact/add', 'User\User_Contacts::add');
+$routes->post('contact/add', 'User\User_Contacts::add');
 $routes->get('contact/list', 'User\User_Contacts::list');
+$routes->get('contact/detail/(:any)', 'User\User_Contacts::detail/$1');
+$routes->post('contact/detail/(:any)', 'User\User_Contacts::detail/$1');
 $routes->get('user/settings', 'User\User_Home::setting');
+$routes->post('user/settings', 'User\User_Home::setting');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
