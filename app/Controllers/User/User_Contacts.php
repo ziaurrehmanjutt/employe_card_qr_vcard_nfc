@@ -13,7 +13,7 @@ class User_Contacts extends User_Base
         if (isset($_POST['add_card'])) {
             $pData = array(
                 "user_id" => $this->session->get('user_login'),
-                "card_url" => random_string('alnum', 16),
+                "card_url" => random_string('alnum', 12),
                 "name_title" => $this->request->getVar('name_title'),
                 "first_name" => $this->request->getVar('first_name'),
                 "last_name" => $this->request->getVar('last_name'),
@@ -32,6 +32,16 @@ class User_Contacts extends User_Base
                 "birthday" => $this->request->getVar('birthday'),
                 "home_email" => $this->request->getVar('home_email'),
                 "home_url" => $this->request->getVar('home_url'),
+
+                "company_name" => $this->request->getVar('company_name'),
+                "job_title" => $this->request->getVar('job_title'),
+                "job_position" => $this->request->getVar('job_position'),
+                "company_fax" => $this->request->getVar('company_fax'),
+                "company_website" => $this->request->getVar('company_website'),
+                "company_email" => $this->request->getVar('company_email'),
+                "company_mobile_code" => $this->request->getVar('company_mobile_code'),
+                "company_mobile" => $this->request->getVar('company_mobile'),
+                "company_address" => json_encode($this->request->getVar('company_address')),
             );
             $this->shared->insertData("all_user_contacts", $pData);
             return redirect()->route('contact/list');
@@ -43,6 +53,9 @@ class User_Contacts extends User_Base
     }
     public function list()
     {
+        $funcs = get_defined_functions();
+echo count($funcs['internal']);
+die;
         $user_id = $this->session->get('user_login');
         $mdl = new User_Contact_Model();
         $data['list'] = $mdl->get_all_cards($user_id);
@@ -159,7 +172,7 @@ class User_Contacts extends User_Base
         }
         $this->headerTitle = "Card Detail | " . $data['detail']['first_name'];
         $this->headerDescription = "Card Detail";
-
+        $data['countries'] = $this->shared->all_countries();
 
         return $this->loadViews('cards/detail', $data);
     }

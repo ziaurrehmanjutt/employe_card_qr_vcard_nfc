@@ -35,10 +35,15 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('page', 'Home::index');
 $routes->get('/', 'Front\Front_Home::index');
+$routes->get('f/home', 'Front\Front_Home::index');
+$routes->get('f/about', 'Front\Front_Home::about');
+$routes->get('f/contact', 'Front\Front_Home::contact');
+$routes->get('f/services', 'Front\Front_Home::services');
+$routes->get('f/pricing', 'Front\Front_Home::pricing');
 $routes->get('login', 'Front\Front_User::login');
 $routes->post('login', 'Front\Front_User::login');
+$routes->get('page', 'Home::index');
 
 
 ////Users Routes
@@ -50,6 +55,11 @@ $routes->get('contact/detail/(:any)', 'User\User_Contacts::detail/$1');
 $routes->post('contact/detail/(:any)', 'User\User_Contacts::detail/$1');
 $routes->get('user/settings', 'User\User_Home::setting');
 $routes->post('user/settings', 'User\User_Home::setting');
+
+
+////ajax
+$routes->post('ajax/get_profile', 'User\User_Ajax::get_profile');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
