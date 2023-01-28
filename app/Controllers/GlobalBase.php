@@ -21,4 +21,16 @@ class GlobalBase extends BaseController
     {
         return view('errors/html/error_404.php',["message"=>$message]);
     } 
+
+
+     /**
+     * Show Toaster to User.
+     *
+     * @param string $message Message to Show
+     * @param string $type  Type of alert can success or error
+     */
+
+    public function setToast($message,$type = 'success'){
+        session()->setFlashdata('toaster', ["type" =>$type ,"message" => $message]);
+    }
 }

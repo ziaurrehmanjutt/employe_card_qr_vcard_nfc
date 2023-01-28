@@ -53,9 +53,7 @@ class User_Contacts extends User_Base
     }
     public function list()
     {
-        $funcs = get_defined_functions();
-echo count($funcs['internal']);
-die;
+    
         $user_id = $this->session->get('user_login');
         $mdl = new User_Contact_Model();
         $data['list'] = $mdl->get_all_cards($user_id);
@@ -89,10 +87,10 @@ die;
                         $newName = $img->getRandomName();
 
                         // Store file in public/uploads/ folder
-                        $img->move('../public'.CARD_IMAGE_PATH, $newName);
+                        $img->move('../public' . CARD_IMAGE_PATH, $newName);
 
-                        $pData =["card_image" => $newName];
-                        $mdl->updateData('all_user_contacts',$pData,["card_url"=>$link]);
+                        $pData = ["card_image" => $newName];
+                        $mdl->updateData('all_user_contacts', $pData, ["card_url" => $link]);
 
                         $dataToast = [
                             "type" => "success",
@@ -113,8 +111,7 @@ die;
             }
             session()->setFlashdata('toaster', $dataToast);
             return redirect()->to('contact/detail/' . $link);
-        }
-        elseif (isset($_POST['banner_picture_upload'])) {
+        } elseif (isset($_POST['banner_picture_upload'])) {
             $img = $this->request->getFile('banner_image');
             if ($img) {
                 $validationRule = [
@@ -139,10 +136,10 @@ die;
                         $newName = $img->getRandomName();
 
                         // Store file in public/uploads/ folder
-                        $img->move('../public'.BANNER_IMAGE_PATH, $newName);
+                        $img->move('../public' . BANNER_IMAGE_PATH, $newName);
 
-                        $pData =["banner_image" => $newName];
-                        $mdl->updateData('all_user_contacts',$pData,["card_url"=>$link]);
+                        $pData = ["banner_image" => $newName];
+                        $mdl->updateData('all_user_contacts', $pData, ["card_url" => $link]);
 
                         $dataToast = [
                             "type" => "success",

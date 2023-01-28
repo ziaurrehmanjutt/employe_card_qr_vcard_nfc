@@ -43,6 +43,8 @@ $routes->get('f/services', 'Front\Front_Home::services');
 $routes->get('f/pricing', 'Front\Front_Home::pricing');
 $routes->get('login', 'Front\Front_User::login');
 $routes->post('login', 'Front\Front_User::login');
+$routes->get('register', 'Front\Front_User::register');
+$routes->post('register', 'Front\Front_User::register');
 $routes->get('page', 'Home::index');
 
 
@@ -57,6 +59,12 @@ $routes->get('user/settings', 'User\User_Home::setting');
 $routes->post('user/settings', 'User\User_Home::setting');
 
 
+// User Categories
+$routes->get('user/categories', 'User\User_Categories::list');
+$routes->post('user/categories', 'User\User_Categories::methods');
+$routes->get('user/categories/detail/(:num)', 'User\User_Categories::detail/$1');
+
+//
 ////ajax
 $routes->post('ajax/get_profile', 'User\User_Ajax::get_profile');
 
